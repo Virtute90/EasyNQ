@@ -144,6 +144,4 @@
 
     allargaDivAsset.style.height = "500px";
   }
-
-  function adminContentType() {}
 })();
