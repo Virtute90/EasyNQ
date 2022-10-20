@@ -24,7 +24,16 @@
     if (cercaElemento.textContent.includes("Asset Management")) {
       assetManagement();
     }
+    if (cercaElemento.textContent.includes("System Administrators Content Types")) {
+      cercaOrdinaElementi();
+    }
   });
+
+  function setMultipleAttribute(elemento, attributo) {
+    for (let chiave in attributo) {
+      elemento.setAttribute(chiave, attributo[chiave]);
+    }
+  }
 
   function fileManager() {
     const rigaFunzione = document.querySelectorAll("td.tdTopGrey table tbody tr"),
@@ -34,7 +43,13 @@
       nuovaRiga = document.createElement("tr"),
       nuovaCellaTesto = document.createElement("td");
 
-    setMultipleAttribute(nuovaTabella, { class: "FnButtons", cellspacing: "0", cellpadding: "1", onmouseover: "buttonover(this);", onmouseout: "buttonout(this);" });
+    setMultipleAttribute(nuovaTabella, {
+      class: "FnButtons",
+      cellspacing: "0",
+      cellpadding: "1",
+      onmouseover: "buttonover(this);",
+      onmouseout: "buttonout(this);",
+    });
     nuovaTabella.style.border = "1px solid rgb(238, 238, 238)";
     nuovaTabella.style.cursor = "pointer";
     nuovaCellaTesto.setAttribute("class", "GreyMain");
@@ -124,15 +139,11 @@
     });
   }
 
-  function setMultipleAttribute(elemento, attributo) {
-    for (let chiave in attributo) {
-      elemento.setAttribute(chiave, attributo[chiave]);
-    }
-  }
-
   function assetManagement() {
     const allargaDivAsset = document.querySelector("#div_list");
 
     allargaDivAsset.style.height = "500px";
   }
+
+  function adminContentType() {}
 })();
