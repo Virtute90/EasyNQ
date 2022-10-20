@@ -82,6 +82,7 @@
 
     ricercaOrdina() {
       super.strutturaBarraFunzioni();
+      this.allargaFinestraSelect();
       this.nuovaRiga1.append(this.nuovaCellaTesto);
       this.nuovaRiga1.append(this.nuovaCellaInput);
       this.nuovaCellaInput.append(this.searchBox);
@@ -103,41 +104,15 @@
       this.nuovaCellaTesto.textContent = "Seleziona tutti i file";
       new eventiBarraFunzioni(this.nuovaCellaTesto).selezionaTuttiFile();
     }
-  }
 
-  function fileManager() {
-    const rigaFunzione = document.querySelectorAll("td.tdTopGrey table tbody tr"),
-      nuovaCella = document.createElement("td"),
-      nuovaTabella = document.createElement("table"),
-      nuovoTbody = document.createElement("tbody"),
-      nuovaRiga = document.createElement("tr"),
-      nuovaCellaTesto = document.createElement("td");
+    allargaFinestraSelect() {
+      const cellaElementiSelect = document.querySelector("td.tdMainbody"),
+        listaElementiSelect = cellaElementiSelect.querySelector("select");
 
-    setMultipleAttribute(nuovaTabella, {
-      class: "FnButtons",
-      cellspacing: "0",
-      cellpadding: "1",
-      onmouseover: "buttonover(this);",
-      onmouseout: "buttonout(this);",
-    });
-    nuovaTabella.style.border = "1px solid rgb(238, 238, 238)";
-    nuovaTabella.style.cursor = "pointer";
-    nuovaCellaTesto.setAttribute("class", "GreyMain");
-    nuovaCellaTesto.textContent = "Seleziona tutti i file";
-
-    rigaFunzione[4].append(nuovaCella);
-    nuovaCella.append(nuovaTabella);
-    nuovaTabella.append(nuovoTbody);
-    nuovoTbody.append(nuovaRiga);
-    nuovaRiga.append(nuovaCellaTesto);
-
-    nuovaCellaTesto.addEventListener("click", () => {
-      const tabellaFileManager = document.querySelectorAll("table.lightmain"),
-        tabellaCheckBox = tabellaFileManager[1].querySelectorAll('[type="checkbox"]');
-      for (let i = 0; i < tabellaCheckBox.length; i++) {
-        tabellaCheckBox[i].checked = true;
-      }
-    });
+      cellaElementiSelect.setAttribute("height", 300);
+      listaElementiSelect.setAttribute("size", 25);
+      listaElementiSelect.style.height = "300px";
+    }
   }
 
   function assetManagement() {
