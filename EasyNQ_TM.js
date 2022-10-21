@@ -90,7 +90,7 @@
         this.elementiTabellaCT = document.querySelectorAll("table.lightmain tr");
         let testoRicerca = e.target.value,
           testoRicercaLower = testoRicerca.toLowerCase();
-        for (let i = 0; i < this.elementiTabellaCT.length; i++) {
+        for (let i = 1; i < this.elementiTabellaCT.length; i++) {
           let testoOpzione = this.elementiTabellaCT[i].textContent || this.elementiTabellaCT[i].innerText,
             testoOpzioneLower = testoOpzione.toLowerCase();
           if (testoOpzioneLower.indexOf(testoRicercaLower) > -1) {
