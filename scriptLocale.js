@@ -20,6 +20,24 @@
       setMultipleAttribute(this.nuovaTabella, { cellspacing: "0", cellpadding: "1", border: "0" });
       this.nuovaCella.setAttribute("class", "tdTopGrey");
     }
+
+    strutturaBarraFunzioniFile() {
+      //Costruisco la struttura
+      this.selezionaPrimaRiga.after(this.nuovaRiga);
+      this.nuovaRiga.append(this.nuovaCella);
+      this.nuovaCella.append(this.nuovaTabella);
+      this.nuovaTabella.append(this.nuovoTbody);
+      this.nuovoTbody.append(this.nuovaRiga1);
+      //Stile e testo
+      setMultipleAttribute(this.nuovaTabella, {
+        cellspacing: "0",
+        cellpadding: "1",
+        onmouseover: "buttonover(this);",
+        onmouseout: "buttonout(this);",
+        style: "border: 1px solid rgb(238, 238, 238); cursor: pointer;",
+      });
+      this.nuovaCella.setAttribute("class", "tdTopGrey");
+    }
   }
 
   class eventiBarraFunzioni {
@@ -117,7 +135,7 @@
     }
 
     selezionaTuttiFile() {
-      super.strutturaBarraFunzioni();
+      super.strutturaBarraFunzioniFile();
       this.nuovaRiga1.append(this.nuovaCellaTesto);
       this.nuovaCellaTesto.setAttribute("class", "GreyMain");
       this.nuovaCellaTesto.textContent = "Seleziona tutti i file";
@@ -154,11 +172,11 @@
     if (cercaElemento.textContent.includes("File Manager")) {
       new elementiBarraFunzioni().selezionaTuttiFile();
     }
-    if (cercaElemento.textContent.includes("Security Groups")) {
-      //cercaOrdinaElementi();
-      new elementiBarraFunzioni().ricercaOrdina();
-    }
-    if (cercaElemento.textContent.includes("Select Table")) {
+    if (
+      cercaElemento.textContent.includes("Security Groups") ||
+      cercaElemento.textContent.includes("Select Table") ||
+      cercaElemento.textContent.includes("Database Table")
+    ) {
       new elementiBarraFunzioni().ricercaOrdina();
     }
     if (cercaElemento.textContent.includes("Asset Management")) {
