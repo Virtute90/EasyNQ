@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EasyNQ
 // @namespace    http://tampermonkey.net/
-// @version      1.1.1
+// @version      1.2
 // @description  Script per aggiungere alcune funzionalità a NQContent
 // @author       Matteo Avesani
 // @icon         https://www.comune.verona.it/portale/images/verona/favicon.ico
@@ -38,7 +38,7 @@
       this.cellaElementiSelect = document.querySelector("td.tdMainbody");
     }
 
-    cercaElementi() {
+    cercaElementiSelect() {
       this.cellaEventoTrigger.addEventListener("keyup", (e) => {
         this.elementiOption = this.cellaElementiSelect.querySelectorAll("option");
         let testoRicerca = e.target.value,
@@ -54,7 +54,8 @@
         }
       });
     }
-    ordinaElementi() {
+
+    ordinaElementiSelect() {
       this.cellaEventoTrigger.addEventListener("click", () => {
         const listaElementiSelect = this.cellaElementiSelect.querySelector("select");
         let arrayTemporaneo = new Array();
@@ -73,12 +74,30 @@
         }
       });
     }
+
     selezionaTuttiFile() {
       this.cellaEventoTrigger.addEventListener("click", () => {
         const tabellaFileManager = document.querySelectorAll("table.lightmain"),
           tabellaCheckBox = tabellaFileManager[1].querySelectorAll('[type="checkbox"]');
         for (let i = 0; i < tabellaCheckBox.length; i++) {
           tabellaCheckBox[i].checked = true;
+        }
+      });
+    }
+
+    cercaElementiCT() {
+      this.cellaEventoTrigger.addEventListener("keyup", (e) => {
+        this.elementiTabellaCT = document.querySelectorAll("table.lightmain tr");
+        let testoRicerca = e.target.value,
+          testoRicercaLower = testoRicerca.toLowerCase();
+        for (let i = 0; i < this.elementiTabellaCT.length; i++) {
+          let testoOpzione = this.elementiTabellaCT[i].textContent || this.elementiTabellaCT[i].innerText,
+            testoOpzioneLower = testoOpzione.toLowerCase();
+          if (testoOpzioneLower.indexOf(testoRicercaLower) > -1) {
+            this.elementiTabellaCT[i].style.display = "";
+          } else {
+            this.elementiTabellaCT[i].style.display = "none";
+          }
         }
       });
     }
@@ -103,8 +122,8 @@
       this.nuovaRiga1.append(this.nuovaCellaOrdina);
       this.nuovaCellaOrdina.setAttribute("class", "FnButtons");
       this.nuovaCellaOrdina.textContent = "Ordina A-Z";
-      new eventiBarraFunzioni(this.nuovaCellaInput).cercaElementi();
-      new eventiBarraFunzioni(this.nuovaCellaOrdina).ordinaElementi();
+      new eventiBarraFunzioni(this.nuovaCellaInput).cercaElementiSelect();
+      new eventiBarraFunzioni(this.nuovaCellaOrdina).ordinaElementiSelect();
     }
 
     selezionaTuttiFile() {
@@ -118,10 +137,21 @@
     allargaFinestraSelect() {
       const cellaElementiSelect = document.querySelector("td.tdMainbody"),
         listaElementiSelect = cellaElementiSelect.querySelector("select");
-
       cellaElementiSelect.setAttribute("height", 300);
       listaElementiSelect.setAttribute("size", 25);
       listaElementiSelect.style.height = "300px";
+    }
+
+    contentType() {
+      super.strutturaBarraFunzioni();
+      this.nuovaRiga1.append(this.nuovaCellaTesto);
+      this.nuovaRiga1.append(this.nuovaCellaInput);
+      this.nuovaCellaInput.append(this.searchBox);
+      this.nuovaCellaInput.setAttribute("class", "tdGrey2");
+      setMultipleAttribute(this.searchBox, { type: "search", name: "nomegruppo", size: 20, maxlength: 40 });
+      this.nuovaCellaTesto.setAttribute("class", "tdGrey2");
+      this.nuovaCellaTesto.textContent = "Cerca elemento:";
+      new eventiBarraFunzioni(this.nuovaCellaInput).cercaElementiCT();
     }
   }
 
@@ -144,8 +174,8 @@
     if (cercaElemento.textContent.includes("Asset Management")) {
       assetManagement();
     }
-    if (cercaElemento.textContent.includes("Content Types")) {
-      contentTypeTable();
+    if (cercaElemento.textContent.includes("Content Type")) {
+      new elementiBarraFunzioni().contentType();
     }
   });
 
