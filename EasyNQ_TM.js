@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EasyNQ
 // @namespace    http://tampermonkey.net/
-// @version      1.2.1
+// @version      1.2.2
 // @description  Script per aggiungere alcune funzionalità a NQContent
 // @author       Matteo Avesani
 // @icon         https://www.comune.verona.it/portale/images/verona/favicon.ico
@@ -164,11 +164,11 @@
     if (cercaElemento.textContent.includes("File Manager")) {
       new elementiBarraFunzioni().selezionaTuttiFile();
     }
-    if (cercaElemento.textContent.includes("Security Groups")) {
-      //cercaOrdinaElementi();
-      new elementiBarraFunzioni().ricercaOrdina();
-    }
-    if (cercaElemento.textContent.includes("Select Table")) {
+    if (
+      cercaElemento.textContent.includes("Security Groups") ||
+      cercaElemento.textContent.includes("Select Table") ||
+      cercaElemento.textContent.includes("Database Table")
+    ) {
       new elementiBarraFunzioni().ricercaOrdina();
     }
     if (cercaElemento.textContent.includes("Asset Management")) {
