@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         EasyNQ
 // @namespace    http://tampermonkey.net/
-// @version      1.2.3
+// @version      1.3
 // @description  Script per aggiungere alcune funzionalità a NQContent
 // @author       Matteo Avesani
 // @icon         https://www.comune.verona.it/portale/images/verona/favicon.ico
 // @match        http://admin.comune.verona.it/admin/*
+// @updateURL    https://greasyfork.org/it/scripts/453415-easynq
 // ==/UserScript==
 
 (function () {
