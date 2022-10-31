@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EasyNQ
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.3.1
 // @description  Script per aggiungere alcune funzionalità a NQContent
 // @author       Matteo Avesani
 // @icon         https://www.comune.verona.it/portale/images/verona/favicon.ico
@@ -13,13 +13,14 @@
   cercaPaginaNQ = document.querySelectorAll("table.tbMain");
 
   class costruiscoNodi {
-    selezionaPrimaRiga = cercaPaginaNQ[0].querySelector("tbody tr");
-    nuovaRiga = document.createElement("tr");
-    nuovaCella = document.createElement("td");
-    nuovaTabella = document.createElement("table");
-    nuovoTbody = document.createElement("tbody");
-    nuovaRiga1 = document.createElement("tr");
-
+    constructor() {
+      selezionaPrimaRiga = cercaPaginaNQ[0].querySelector("tbody tr");
+      nuovaRiga = document.createElement("tr");
+      nuovaCella = document.createElement("td");
+      nuovaTabella = document.createElement("table");
+      nuovoTbody = document.createElement("tbody");
+      nuovaRiga1 = document.createElement("tr");
+    }
     strutturaBarraFunzioni() {
       //Costruisco la struttura
       this.selezionaPrimaRiga.after(this.nuovaRiga);
@@ -123,10 +124,12 @@
   }
 
   class elementiBarraFunzioni extends costruiscoNodi {
-    nuovaCellaTesto = document.createElement("td");
-    nuovaCellaInput = document.createElement("td");
-    nuovaCellaOrdina = document.createElement("td");
-    searchBox = document.createElement("input");
+    constructor() {
+      nuovaCellaTesto = document.createElement("td");
+      nuovaCellaInput = document.createElement("td");
+      nuovaCellaOrdina = document.createElement("td");
+      searchBox = document.createElement("input");
+    }
 
     ricercaOrdina() {
       super.strutturaBarraFunzioni();
