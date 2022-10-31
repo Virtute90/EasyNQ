@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EasyNQ
 // @namespace    http://tampermonkey.net/
-// @version      1.3.2
+// @version      1.3.3
 // @description  Script per aggiungere alcune funzionalità a NQContent
 // @author       Matteo Avesani
 // @icon         https://www.comune.verona.it/portale/images/verona/favicon.ico
@@ -125,6 +125,7 @@
 
   class elementiBarraFunzioni extends costruiscoNodi {
     constructor() {
+      super();
       this.nuovaCellaTesto = document.createElement("td");
       this.nuovaCellaInput = document.createElement("td");
       this.nuovaCellaOrdina = document.createElement("td");
