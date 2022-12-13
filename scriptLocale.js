@@ -179,6 +179,7 @@
     if (
       cercaElemento.textContent.includes("Security Groups") ||
       cercaElemento.textContent.includes("Select Table") ||
+      cercaElemento.textContent.includes("Content Types Administration") || //Da fixare, doppia barra ricerca su content types
       cercaElemento.textContent.includes("Database Table")
     ) {
       new elementiBarraFunzioni().ricercaOrdina();

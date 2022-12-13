@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         EasyNQ
 // @namespace    http://tampermonkey.net/
-// @version      1.3.3
+// @version      1.3.4
 // @description  Script per aggiungere alcune funzionalità a NQContent
 // @author       Matteo Avesani
 // @icon         https://www.comune.verona.it/portale/images/verona/favicon.ico
@@ -190,6 +190,7 @@
     if (
       cercaElemento.textContent.includes("Security Groups") ||
       cercaElemento.textContent.includes("Select Table") ||
+      cercaElemento.textContent.includes("Content Types Administration") || //Da fixare, doppia barra ricerca su content types
       cercaElemento.textContent.includes("Database Table")
     ) {
       new elementiBarraFunzioni().ricercaOrdina();
